@@ -1,13 +1,15 @@
 # HealthFlow - Sistema de Saúde
 
-Sistema fictício de **Prontuário Eletrônico e Gestão de Pacientes**, evolutivo por níveis de carreira (Estagiário → Júnior → Pleno → Sênior → Tech Lead).
+Este projeto foi desenvolvido com o objetivo de criar um sistema simples de **Prontuário Eletrônico e Gestão de Pacientes**, utilizando Node.js, Express e SQLite.  
+O sistema permite cadastrar pacientes e registrar consultas médicas vinculadas a cada paciente.
 
-## Pré-requisitos
-- Node.js instalado
-- Git
-- SQLite (já integrado via pacote `sqlite3`)
+## Tecnologias utilizadas
+- Node.js
+- Express
+- SQLite
 
 ## Instalação
+Clone o repositório e instale as dependências:
 ```bash
 git clone https://github.com/RafaelEndy/healthflow.git
 cd healthflow

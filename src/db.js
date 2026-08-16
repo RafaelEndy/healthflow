@@ -8,6 +8,14 @@ db.serialize(() => {
     age INTEGER,
     contact TEXT
   )`);
+
+  db.run(`CREATE TABLE IF NOT EXISTS consultations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    patient_id INTEGER,
+    date TEXT,
+    description TEXT,
+    FOREIGN KEY(patient_id) REFERENCES patients(id)
+  )`);
 });
 
 module.exports = db;
