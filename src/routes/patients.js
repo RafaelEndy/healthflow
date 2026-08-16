@@ -9,6 +9,15 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id/consultations', (req, res) => {
+  const patientId = req.params.id;
+  db.all("SELECT * FROM consultations WHERE patient_id = ?", [patientId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+
 router.post('/', (req, res) => {
   const { name, age, contact } = req.body;
   db.run("INSERT INTO patients (name, age, contact) VALUES (?, ?, ?)",
