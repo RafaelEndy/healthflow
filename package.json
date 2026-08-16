@@ -1,0 +1,25 @@
+{
+  "name": "healthflow",
+  "version": "1.0.0",
+  "description": "HealthFlow - Sistema de Saúde (Prontuário Eletrônico e Gestão de Pacientes)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelEndy/healthflow.git"
+  },
+  "keywords": [],
+  "author": "Rafael Endy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RafaelEndy/healthflow/issues"
+  },
+  "homepage": "https://github.com/RafaelEndy/healthflow#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite3": "^6.0.1"
+  }
+}
