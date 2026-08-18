@@ -1,31 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const patientsController = require('../controllers/patientsController');
 
+// Lista todos os pacientes
 router.get('/', (req, res) => {
-  db.all("SELECT * FROM patients", [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  patientsController.listPatients(req, res);
 });
 
-router.get('/:id/consultations', (req, res) => {
-  const patientId = req.params.id;
-  db.all("SELECT * FROM consultations WHERE patient_id = ?", [patientId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
-});
-
-
+// Cadastra um novo paciente
 router.post('/', (req, res) => {
-  const { name, age, contact } = req.body;
-  db.run("INSERT INTO patients (name, age, contact) VALUES (?, ?, ?)",
-    [name, age, contact],
-    function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: this.lastID, name, age, contact });
-    });
+  patientsController.addPatient(req, res);
+});
+
+// Histórico de consultas de um paciente
+router.get('/:id/consultations', (req, res) => {
+  patientsController.listConsultationsByPatient(req, res);
 });
 
 module.exports = router;

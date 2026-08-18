@@ -20,6 +20,7 @@
   "homepage": "https://github.com/RafaelEndy/healthflow#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "sqlite3": "^6.0.1"
   },
   "devDependencies": {

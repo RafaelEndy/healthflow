@@ -1,27 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const consultationsController = require('../controllers/consultationsController');
 
+// Lista todas as consultas
 router.get('/', (req, res) => {
-  db.all("SELECT * FROM consultations", [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  consultationsController.listConsultations(req, res);
 });
 
+// Cadastra uma nova consulta
 router.post('/', (req, res) => {
-  const { patient_id, date, description } = req.body;
-
-  if (!patient_id || !date) {
-    return res.status(400).json({ error: "patient_id e date são obrigatórios" });
-  }
-
-  db.run("INSERT INTO consultations (patient_id, date, description) VALUES (?, ?, ?)",
-    [patient_id, date, description],
-    function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ id: this.lastID, patient_id, date, description });
-    });
+  consultationsController.addConsultation(req, res);
 });
 
 module.exports = router;

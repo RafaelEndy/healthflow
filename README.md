@@ -1,13 +1,15 @@
 # HealthFlow - Sistema de Saúde
 
 Este projeto foi desenvolvido com o objetivo de criar um sistema simples de **Prontuário Eletrônico e Gestão de Pacientes**, utilizando Node.js, Express e SQLite.  
-O sistema permite cadastrar pacientes, registrar consultas médicas e consultar o histórico de cada paciente.
+O sistema permite cadastrar pacientes, registrar consultas médicas e consultar o histórico de cada paciente.  
+Agora, na versão V4, o sistema conta com **autenticação JWT** para proteger as rotas.
 
 ## Tecnologias utilizadas
 - Node.js
 - Express
 - SQLite
 - Jest + Supertest (testes automatizados)
+- JSON Web Token (JWT)
 
 ## Instalação
 Clone o repositório e instale as dependências:
