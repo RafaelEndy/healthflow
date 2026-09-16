@@ -1,19 +1,35 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const router = express.Router();
+const config = require('../../config.js'); 
+const usersModel = require('../models/userModel');
 
-const SECRET = 'segredo_super_seguranca';
-
-const USER = { username: 'admin', password: '123456' };
-
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { username, password } = req.body;
-  if (username === USER.username && password === USER.password) {
-    const token = jwt.sign({ username }, SECRET, { expiresIn: '1h' });
+
+  try {
+    const user = await usersModel.findByUsername(username);
+    if (!user) {
+      return res.status(401).json({ error: 'Usuário não encontrado' });
+    }
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) {
+      return res.status(401).json({ error: 'Credenciais inválidas' });
+    }
+
+    const token = jwt.sign(
+      { id: user.id, username: user.username, role: user.role },
+      config.jwtSecret,
+      { expiresIn: '1h' }
+    );
+
     res.json({ token });
-  } else {
-    res.status(401).json({ error: 'Credenciais inválidas' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro interno no servidor' });
   }
 });
 
-module.exports = { router, SECRET };
+module.exports = { router };

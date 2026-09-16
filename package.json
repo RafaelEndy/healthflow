@@ -19,7 +19,11 @@
   },
   "homepage": "https://github.com/RafaelEndy/healthflow#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
     "sqlite3": "^6.0.1"
   },
